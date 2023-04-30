@@ -108,7 +108,7 @@ const Register = () => {
                                 onChange={handlePhoneNumberChange}
                             />
                             {
-                                !isValidPhoneNumber && <p className='text-red-700 font-semibold text-center'>please provide a valid phone number</p>
+                                !isValidPhoneNumber && <p className='text-yellow-300 font-semibold text-center'>provide valid number like 01*********</p>
                             }
                         </div>
                         <div className="mb-2 text-lg text-start">

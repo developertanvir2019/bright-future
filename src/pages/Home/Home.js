@@ -14,7 +14,6 @@ const Home = () => {
     }, [])
 
     const currentUser = allUser.find(us => us.email === user?.email);
-    console.log(currentUser);
 
     return (
         <div className='flex justify-center my-5'>
