@@ -38,10 +38,9 @@ const Register = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data.data.url);
                     createUser(email, password)
                         .then(result => {
-                            saveUser(name, email, result?.user?.photoURL, number);
+                            saveUser(name, email, data.data.url, number);
                             toast.success('login successfully ..')
                             navigate(from, { replace: true });
                         })
