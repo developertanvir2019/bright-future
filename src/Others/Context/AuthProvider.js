@@ -4,6 +4,7 @@ import {
     createUserWithEmailAndPassword,
     getAuth,
     onAuthStateChanged,
+    sendEmailVerification,
     signInWithEmailAndPassword,
     signOut,
 } from 'firebase/auth'
@@ -30,6 +31,9 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    const verifyEmail = () => {
+        return sendEmailVerification(auth.currentUser);
+    }
     useEffect(() => {
         //this part will execute once the component is mounted.
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -48,7 +52,8 @@ const AuthProvider = ({ children }) => {
         logout,
         signin,
         loading,
-        setLoading
+        setLoading,
+        verifyEmail
     }
 
     return (

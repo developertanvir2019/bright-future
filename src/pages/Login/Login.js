@@ -20,8 +20,13 @@ const Login = () => {
 
         signin(email, password)
             .then(res => {
-                toast.success('Log in successFully..')
-                navigate(from, { replace: true })
+                if (res?.user?.emailVerified) {
+                    toast.success('Log in successFully..')
+                    navigate(from, { replace: true })
+                }
+                else {
+                    toast.error('Your email is not verified. please verify it')
+                }
             })
             .catch(err => {
                 toast.error(err.message)

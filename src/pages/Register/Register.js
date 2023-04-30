@@ -6,7 +6,7 @@ import { AuthContext } from '../../Others/Context/AuthProvider';
 const Register = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(false);
-    const { createUser } = useContext(AuthContext);
+    const { createUser, verifyEmail } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
@@ -17,6 +17,7 @@ const Register = () => {
         setIsValidPhoneNumber(isValid);
         setPhoneNumber(inputPhoneNumber);
     };
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -41,7 +42,8 @@ const Register = () => {
                     createUser(email, password)
                         .then(result => {
                             saveUser(name, email, data.data.url, number);
-                            toast.success('login successfully ..')
+                            toast.success('Verification mail send . please check your email')
+                            handleEmailVerify();
                             navigate(from, { replace: true });
                         })
                 })
@@ -53,6 +55,11 @@ const Register = () => {
         }
     };
 
+    const handleEmailVerify = () => {
+        verifyEmail()
+            .then({})
+            .catch(err => toast.error('email verification mail is not send. I face some problem'))
+    }
 
     const saveUser = (name, email, image, phone,) => {
         const user = { name, email, image, phone, };
